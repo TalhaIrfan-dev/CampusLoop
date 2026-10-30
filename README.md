@@ -19,7 +19,7 @@ One of its distinguishing concepts is a **Smart Delivery Recommendation System**
 
 ## ✨ Planned Features
 
-The following are initial project ideas and will be refined during requirement analysis.
+The following are preliminary project ideas and will be refined during requirement analysis.
 
 - **Campus Marketplace:** Browse and discover products listed by students.
 - **Product Listings:** Create and manage item listings.
@@ -29,20 +29,38 @@ The following are initial project ideas and will be refined during requirement a
 - **Smart Delivery Recommendation:** Suggest suitable delivery options based on item and delivery requirements.
 - **Delivery Management:** Manage delivery assignments and status updates.
 - **User Dashboard:** Display relevant marketplace and transaction activities.
+- **Role-Based Access:** Provide appropriate interfaces and functionality for different user roles.
+
+## 🎨 Design Direction
+
+CampusLoop will follow a **Modern Green** visual design direction.
+
+The design focuses on a clean, minimal, friendly, and professional user experience.
+
+| Design Element | Selection |
+|---|---|
+| Theme | Modern Green |
+| Primary Color | Forest Green (`#176B50`) |
+| Background | Off White (`#F8F9F6`) |
+| Typography | Poppins and Inter |
+| Design Style | Clean and Minimal |
+| Layout | Responsive and reusable components |
+
+The visual identity reflects sustainability, resource circulation, and the university community.
 
 ## 🛠️ Technology Stack
 
-The project will use the following technologies:
+The frontend development will use:
 
 | Layer | Technology | Status |
 |---|---|---|
-| Frontend | HTML5 | Planned |
-| Frontend | CSS3 | Planned |
-| Frontend | JavaScript (ES6+) | Planned |
+| Frontend | HTML5 | Selected |
+| Frontend | CSS3 | Selected |
+| Frontend | JavaScript (ES6+) | Selected |
 | Backend | To be decided | Under consideration |
 | Database | To be decided | Under consideration |
 
-The frontend will be developed using HTML5, CSS3, and JavaScript. The backend technology and database management system will be selected during the project planning and architecture design phases based on project requirements and technical feasibility.
+The backend technology and database management system will be finalized after reviewing project requirements, course constraints, and technical feasibility.
 
 ## 👥 Team Members
 
@@ -51,22 +69,64 @@ The frontend will be developed using HTML5, CSS3, and JavaScript. The backend te
 | Talha Irfan | Project Development |
 | Muhammad Waleed | Project Development |
 
+Both members will collaborate throughout the development lifecycle, including planning, implementation, testing, and documentation.
+
 ## 📂 Project Structure
 
-The repository structure and development modules will be established as the project progresses.
+CampusLoop follows a modular project structure to maintain separation of concerns and make development easier to manage.
 
-## 🚀 Project Status
+```text
+CampusLoop/
+│
+├── README.md
+├── LICENSE
+├── .gitignore
+│
+├── docs/
+│
+├── public/
+│   ├── pages/
+│   ├── css/
+│   ├── js/
+│   └── assets/
+│       ├── images/
+│       └── icons/
+│
+├── src/
+├── database/
+└── tests/
+```
 
-**Currently in the initial setup and planning phase.**
+**Directory responsibilities:**
 
-Development will follow a structured software development process, including:
+- `docs/` — Project documentation, requirements, diagrams, design decisions, and weekly reports.
+- `public/` — Frontend pages, stylesheets, browser-side JavaScript, and static assets.
+- `src/` — Backend application source code.
+- `database/` — Database schemas, SQL scripts, and related resources.
+- `tests/` — Test cases and testing-related files.
 
-- Requirement Analysis
-- Project Planning
-- System Design
-- Implementation
-- Testing and Quality Assurance
-- Documentation and Finalization
+The structure will be expanded incrementally as development progresses.
+
+For more information about directory responsibilities and development conventions, see [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md).
+
+## 🚀 Project Development
+
+CampusLoop is being developed through a structured Software Development Life Cycle (SDLC), covering the following phases:
+
+1. Requirement Analysis
+2. Project Planning
+3. System Design
+4. Implementation
+5. Testing and Quality Assurance
+6. Documentation and Finalization
+
+The project follows an iterative development approach, with activities, decisions, and progress documented throughout its development.
+
+## 📊 Project Documentation
+
+Project-related documentation, including requirements, design documents, diagrams, testing records, and weekly progress reports, is maintained in the [`docs/`](docs/) directory.
+
+For information about the repository organization, refer to [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md).
 
 ## 🎓 Academic Information
 
@@ -76,4 +136,4 @@ The project provides an opportunity to apply practical Web Engineering concepts 
 
 ---
 
-*CampusLoop — Connecting students, circulating resources, and simplifying campus exchanges.*
+**CampusLoop — Connecting students, circulating resources, and simplifying campus exchanges.**
