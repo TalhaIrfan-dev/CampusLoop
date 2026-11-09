@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace | CampusLoop</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/campusloop-logo.png" alt="CampusLoop logo">
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a class="active" href="marketplace.html">Marketplace</a>
+                <a href="dashboard.html">Dashboard</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a class="btn btn-quiet" href="login.html">Log in</a>
+                <a class="btn btn-primary" href="add-listing.html">+ List an item</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-main container">
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow">The campus marketplace</span>
+                <h1>Find your next <span>good thing.</span></h1>
+                <p>Useful finds, shared by students in your campus community.</p>
+            </div>
+
+            <a class="btn btn-primary" href="add-listing.html">+ Create listing</a>
+        </div>
+
+        <form class="search-panel" action="#" method="get">
+            <label class="search-field">
+                <span>⌕</span>
+                <input type="search" name="search" placeholder="Search books, calculators, hostel items...">
+            </label>
+
+            <label class="select-field">
+                <span class="sr-only">Category</span>
+                <select name="category">
+                    <option value="">All categories</option>
+                    <option>Books</option>
+                    <option>Electronics</option>
+                    <option>Study supplies</option>
+                    <option>Hostel & home</option>
+                </select>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+
+        <div class="market-layout">
+            <aside class="filter-panel">
+                <div class="filter-title">
+                    <h2>Filters</h2>
+                    <a href="marketplace.html">Reset</a>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Category</h3>
+
+                    <label>
+                        <input type="checkbox" name="filter-category" value="books">
+                        Books <span>12</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="filter-category" value="electronics">
+                        Electronics <span>8</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="filter-category" value="study">
+                        Study supplies <span>15</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="filter-category" value="hostel">
+                        Hostel & home <span>6</span>
+                    </label>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Listing type</h3>
+
+                    <label>
+                        <input type="checkbox" name="listing-type" value="sale">
+                        For sale
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="listing-type" value="exchange">
+                        Exchange
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="listing-type" value="donation">
+                        Free / donation
+                    </label>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Condition</h3>
+
+                    <label>
+                        <input type="checkbox" name="condition" value="new">
+                        Like new
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="condition" value="good">
+                        Good
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="condition" value="used">
+                        Usable
+                    </label>
+                </div>
+            </aside>
+
+            <section class="listing-area">
+                <div class="listing-toolbar">
+                    <p>
+                        <strong>Featured listings</strong>
+                        <span>· 6 items</span>
+                    </p>
+
+                    <label>
+                        Sort by
+                        <select name="sort">
+                            <option>Recently added</option>
+                            <option>Price: low to high</option>
+                            <option>Price: high to low</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="product-grid">
+
+                    <article class="product-card">
+                        <a href="product-detail.html" class="product-image product-books">
+                            <span class="product-badge">For sale</span>
+                            <div class="illustration-books">
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                            </div>
+                            <span class="save-mark">♡</span>
+                        </a>
+
+                        <div class="product-info">
+                            <span class="product-category">Books</span>
+                            <h3>
+                                <a href="product-detail.html">Programming Fundamentals</a>
+                            </h3>
+
+                            <div class="product-bottom">
+                                <strong>Rs. 1,200</strong>
+                                <span>Good condition</span>
+                            </div>
+
+                            <p class="seller-line">Listed by Ali · 2 hours ago</p>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <a href="product-detail.html" class="product-image product-calc">
+                            <span class="product-badge badge-exchange">Exchange</span>
+                            <div class="calculator-art">
+                                <span></span>
+                                <b>123</b>
+                                <i></i>
+                            </div>
+                            <span class="save-mark">♡</span>
+                        </a>
+
+                        <div class="product-info">
+                            <span class="product-category">Electronics</span>
+                            <h3>
+                                <a href="product-detail.html">Scientific Calculator</a>
+                            </h3>
+
+                            <div class="product-bottom">
+                                <strong>Exchange</strong>
+                                <span>Like new</span>
+                            </div>
+
+                            <p class="seller-line">Listed by Sara · Yesterday</p>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <a href="product-detail.html" class="product-image product-lamp">
+                            <span class="product-badge badge-free">Free</span>
+                            <div class="lamp-art">
+                                <i></i>
+                                <b></b>
+                                <span></span>
+                            </div>
+                            <span class="save-mark">♡</span>
+                        </a>
+
+                        <div class="product-info">
+                            <span class="product-category">Hostel & home</span>
+                            <h3>
+                                <a href="product-detail.html">Study Desk Lamp</a>
+                            </h3>
+
+                            <div class="product-bottom">
+                                <strong>Free</strong>
+                                <span>Good condition</span>
+                            </div>
+
+                            <p class="seller-line">Listed by Hamza · 1 day ago</p>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <a href="product-detail.html" class="product-image product-notes">
+                            <span class="product-badge">For sale</span>
+                            <div class="notes-art">
+                                <span>NOTES</span>
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                            </div>
+                            <span class="save-mark">♡</span>
+                        </a>
+
+                        <div class="product-info">
+                            <span class="product-category">Study supplies</span>
+                            <h3>
+                                <a href="product-detail.html">Semester Notes Bundle</a>
+                            </h3>
+
+                            <div class="product-bottom">
+                                <strong>Rs. 350</strong>
+                                <span>Good condition</span>
+                            </div>
+
+                            <p class="seller-line">Listed by Ayesha · 2 days ago</p>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <a href="product-detail.html" class="product-image product-bag">
+                            <span class="product-badge">For sale</span>
+                            <div class="bag-art">▱</div>
+                            <span class="save-mark">♡</span>
+                        </a>
+
+                        <div class="product-info">
+                            <span class="product-category">Hostel & home</span>
+                            <h3>
+                                <a href="product-detail.html">Everyday Backpack</a>
+                            </h3>
+
+                            <div class="product-bottom">
+                                <strong>Rs. 900</strong>
+                                <span>Usable</span>
+                            </div>
+
+                            <p class="seller-line">Listed by Usman · 3 days ago</p>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <a href="product-detail.html" class="product-image product-mouse">
+                            <span class="product-badge badge-exchange">Exchange</span>
+                            <div class="mouse-art">
+                                <i></i>
+                            </div>
+                            <span class="save-mark">♡</span>
+                        </a>
+
+                        <div class="product-info">
+                            <span class="product-category">Electronics</span>
+                            <h3>
+                                <a href="product-detail.html">Wireless Mouse</a>
+                            </h3>
+
+                            <div class="product-bottom">
+                                <strong>Exchange</strong>
+                                <span>Like new</span>
+                            </div>
+
+                            <p class="seller-line">Listed by Zain · 4 days ago</p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-wrap">
+            <a class="footer-brand" href="index.html">
+                Campus<span>Loop</span>
+            </a>
+
+            <p>Buy · Sell · Exchange · Donate</p>
+
+            <small>© 2026 CampusLoop — A greener campus together.</small>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a listing | CampusLoop</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/campusloop-logo.png" alt="CampusLoop logo">
+            </a>
+
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="marketplace.html">Marketplace</a>
+                <a href="dashboard.html">Dashboard</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a class="btn btn-quiet" href="login.html">Log in</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-main narrow-main">
+        <div class="breadcrumb">
+            <a href="marketplace.html">Marketplace</a> / Create listing
+        </div>
+
+        <div class="page-heading compact-heading">
+            <div>
+                <span class="eyebrow">Pass it along</span>
+                <h1>Create a <span>listing.</span></h1>
+                <p>Share the details so another student can find what they need.</p>
+            </div>
+        </div>
+
+        <form class="listing-form" action="#" method="post">
+
+            <div class="form-section">
+                <h2>Item details</h2>
+
+                <div class="form-group">
+                    <label for="item-title">Item title</label>
+                    <input
+                        id="item-title"
+                        name="itemTitle"
+                        type="text"
+                        placeholder="e.g. Programming Fundamentals textbook"
+                        required
+                    >
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="item-category">Category</label>
+                        <select id="item-category" name="category" required>
+                            <option value="">Choose category</option>
+                            <option>Books</option>
+                            <option>Electronics</option>
+                            <option>Study supplies</option>
+                            <option>Hostel & home</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-condition">Condition</label>
+                        <select id="item-condition" name="condition" required>
+                            <option value="">Choose condition</option>
+                            <option>Like new</option>
+                            <option>Good</option>
+                            <option>Usable</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-description">Description</label>
+                    <textarea
+                        id="item-description"
+                        name="description"
+                        rows="4"
+                        placeholder="Describe the item's condition and any useful details..."
+                    ></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Listing type & price</h2>
+
+                <div class="form-group">
+                    <label for="listing-type">What would you like to do?</label>
+                    <select id="listing-type" name="listingType" required>
+                        <option value="">Select listing type</option>
+                        <option value="sale">Sell</option>
+                        <option value="exchange">Exchange</option>
+                        <option value="donate">Donate</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-price">Price (PKR)</label>
+                    <input
+                        id="item-price"
+                        name="price"
+                        type="number"
+                        min="0"
+                        placeholder="Enter amount (use 0 for free)"
+                    >
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Item & delivery information</h2>
+
+                <p class="section-help">
+                    These details can be used later by the Smart Delivery Recommendation feature.
+                </p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="item-weight">Approx. weight (kg)</label>
+                        <input
+                            id="item-weight"
+                            name="weightKg"
+                            type="number"
+                            min="0"
+                            step="0.1"
+                            placeholder="e.g. 1.5"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-distance">Delivery distance (km)</label>
+                        <input
+                            id="item-distance"
+                            name="distanceKm"
+                            type="number"
+                            min="0"
+                            step="0.1"
+                            placeholder="e.g. 2"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="item-size">Size</label>
+                        <select id="item-size" name="itemSize">
+                            <option value="">Select size</option>
+                            <option>Small</option>
+                            <option>Medium</option>
+                            <option>Large</option>
+                            <option>Extra large</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-fragile">Fragile item?</label>
+                        <select id="item-fragile" name="isFragile">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Item photo</h2>
+
+                <label class="upload-area" for="item-image">
+                    <span class="upload-icon">↑</span>
+                    <strong>Choose an image</strong>
+                    <small>Image upload preview will be added in a later step.</small>
+                    <input
+                        id="item-image"
+                        name="itemImage"
+                        type="file"
+                        accept="image/*"
+                    >
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <a class="btn btn-outline" href="marketplace.html">Cancel</a>
+                <button class="btn btn-primary" type="submit">Publish listing</button>
+            </div>
+
+        </form>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-wrap">
+            <a class="footer-brand" href="index.html">
+                Campus<span>Loop</span>
+            </a>
+
+            <small>© 2026 CampusLoop — Connecting Students, Simplifying Campus Life.</small>
+        </div>
+    </footer>
+</body>
+</html>
