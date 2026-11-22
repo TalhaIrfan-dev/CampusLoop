@@ -1,12 +1,13 @@
 # CampusLoop ♻️
-
-**University Peer-to-Peer Marketplace with Smart Delivery**
+### University Peer-to-Peer Marketplace with Smart Delivery
 
 CampusLoop is a university-focused peer-to-peer marketplace designed to connect students within a campus community. It provides a platform where students can buy, sell, exchange, donate, and discover useful items from other students.
 
 The project aims to encourage reuse, reduce waste, and make student-to-student transactions more organized and accessible.
 
 One of its distinguishing concepts is a **Smart Delivery Recommendation System**, which aims to recommend suitable delivery methods based on item characteristics and delivery requirements.
+
+---
 
 ## 🎯 Project Objectives
 
@@ -17,23 +18,41 @@ One of its distinguishing concepts is a **Smart Delivery Recommendation System**
 - Encourage reuse and circulation of useful products within the campus community.
 - Provide a convenient and user-friendly experience.
 
-## ✨ Planned Features
+---
 
-The following are preliminary project ideas and will be refined during requirement analysis.
+## ✨ Project Features
 
-- **Campus Marketplace:** Browse and discover products listed by students.
-- **Product Listings:** Create and manage item listings.
-- **Search & Filtering:** Find products using relevant categories and filters.
-- **Peer-to-Peer Transactions:** Support buying, selling, exchanging, and donating.
+CampusLoop is being developed incrementally. The following features represent the current implementation and planned functionality.
+
+### Implemented Features
+
+- **Student Authentication:** Student registration, login, password hashing, session management, and logout.
+- **Student Dashboard:** Display personalized information for the authenticated student.
+- **Campus Marketplace:** Browse dynamically loaded listings from the database.
+- **Product Listings:** Create, view, edit, and delete marketplace listings.
+- **Search & Filtering:** Search products and filter listings by category, listing type, and condition.
+- **Sorting:** Sort marketplace listings by relevant criteria, including price and listing date.
+- **Product Details:** View detailed item information and seller details.
+- **My Listings:** View and manage listings created by the currently logged-in student.
+- **Image Uploads:** Upload and store listing images using Multer.
+- **Protected Routes:** Restrict access to private pages and enforce listing ownership.
+
+### Planned Features
+
+- **Peer-to-Peer Transactions:** Support buying, selling, exchanging, and donating items.
 - **Offers & Requests:** Allow students to negotiate offers and request needed items.
 - **Smart Delivery Recommendation:** Suggest suitable delivery options based on item and delivery requirements.
 - **Delivery Management:** Manage delivery assignments and status updates.
-- **User Dashboard:** Display relevant marketplace and transaction activities.
+- **Enhanced User Dashboard:** Display relevant marketplace and transaction activities.
 - **Role-Based Access:** Provide appropriate interfaces and functionality for different user roles.
+
+The planned features will be refined during requirement analysis and subsequent development phases.
+
+---
 
 ## 🎨 Design Direction
 
-CampusLoop will follow a **Modern Green** visual design direction.
+CampusLoop follows a **Modern Green** visual design direction.
 
 The design focuses on a clean, minimal, friendly, and professional user experience.
 
@@ -48,19 +67,28 @@ The design focuses on a clean, minimal, friendly, and professional user experien
 
 The visual identity reflects sustainability, resource circulation, and the university community.
 
+---
+
 ## 🛠️ Technology Stack
 
-The frontend development will use:
+CampusLoop uses the following technologies:
 
-| Layer | Technology | Status |
+| Layer | Technology | Purpose |
 |---|---|---|
-| Frontend | HTML5 | Selected |
-| Frontend | CSS3 | Selected |
-| Frontend | JavaScript (ES6+) | Selected |
-| Backend | To be decided | Under consideration |
-| Database | To be decided | Under consideration |
+| Frontend | HTML5 | Page structure |
+| Frontend | CSS3 | Styling and responsive layouts |
+| Frontend | JavaScript (ES6+) | Client-side functionality |
+| Templating | EJS | Dynamic page rendering |
+| Backend | Node.js | Server-side runtime |
+| Backend | Express.js | Routing and application logic |
+| Database | MySQL | Relational data storage |
+| Database Tool | MySQL Workbench | Database management |
+| Authentication | bcrypt | Password hashing |
+| Session Management | express-session | User session handling |
+| File Uploads | Multer | Listing image uploads |
+| Configuration | dotenv | Environment variable management |
 
-The backend technology and database management system will be finalized after reviewing project requirements, course constraints, and technical feasibility.
+---
 
 ## 👥 Team Members
 
@@ -69,7 +97,9 @@ The backend technology and database management system will be finalized after re
 | Talha Irfan | Project Development |
 | Muhammad Waleed | Project Development |
 
-Both members will collaborate throughout the development lifecycle, including planning, implementation, testing, and documentation.
+Both members collaborate throughout the development lifecycle, including planning, implementation, testing, and documentation.
+
+---
 
 ## 📂 Project Structure
 
@@ -81,33 +111,112 @@ CampusLoop/
 ├── README.md
 ├── LICENSE
 ├── .gitignore
+├── .env.example
+├── package.json
+├── package-lock.json
+│
+│
+├── src/
+│   ├── config/
+│   │   └── db.js
+│   ├── server.js
+│   ├── signup.js
+│   └── login.js
+│
+├── views/
+│   ├── pages/
+│   └── partials/
+│
+├── public/
+│   ├── css/
+│   ├── js/
+│   ├── assets/
+│   │   ├── images/
+│   │   └── icons/
+│   │
+│   └── uploads/
+│       └── listings/
+│
+├── database/
 │
 ├── docs/
 │
-├── public/
-│   ├── pages/
-│   ├── css/
-│   ├── js/
-│   └── assets/
-│       ├── images/
-│       └── icons/
-│
-├── src/
-├── database/
 └── tests/
 ```
 
 **Directory responsibilities:**
 
-- `docs/` — Project documentation, requirements, diagrams, design decisions, and weekly reports.
-- `public/` — Frontend pages, stylesheets, browser-side JavaScript, and static assets.
-- `src/` — Backend application source code.
+- `config/` — Database connection and configuration.
+- `src/` — Backend application code, including server configuration and authentication routes.
+- `views/` — EJS templates, including application pages and reusable partials.
+- `public/` — Static frontend resources, stylesheets, browser-side JavaScript, and uploaded listing images.
 - `database/` — Database schemas, SQL scripts, and related resources.
-- `tests/` — Test cases and testing-related files.
+- `docs/` — Project documentation, requirements, diagrams, design decisions, and progress reports.
+- `tests/` — Test cases and testing-related resources.
 
 The structure will be expanded incrementally as development progresses.
 
 For more information about directory responsibilities and development conventions, see [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md).
+
+---
+
+## ⚙️ Installation and Setup
+
+Follow these steps to run CampusLoop locally.
+
+### Prerequisites
+
+Make sure you have installed:
+
+- Node.js
+- npm
+- MySQL Server
+- MySQL Workbench
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/TalhaIrfan-dev/CampusLoop.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd CampusLoop
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env` file in the project root using `.env.example` as a reference.
+
+Configure your MySQL credentials and session secret.
+
+### 4. Configure the Database
+
+- Start MySQL Server.
+- Open MySQL Workbench.
+- Create the CampusLoop database.
+- Execute the database schema scripts available in the `database/` directory.
+
+### 5. Start the Application
+
+```bash
+npm run dev
+```
+
+Open the application in your browser:
+
+```text
+http://localhost:3000
+```
+
+---
 
 ## 🚀 Project Development
 
@@ -122,11 +231,15 @@ CampusLoop is being developed through a structured Software Development Life Cyc
 
 The project follows an iterative development approach, with activities, decisions, and progress documented throughout its development.
 
+---
+
 ## 📊 Project Documentation
 
 Project-related documentation, including requirements, design documents, diagrams, testing records, and weekly progress reports, is maintained in the [`docs/`](docs/) directory.
 
-For information about the repository organization, refer to [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md).
+For information about repository organization, refer to [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md).
+
+---
 
 ## 🎓 Academic Information
 
@@ -136,4 +249,4 @@ The project provides an opportunity to apply practical Web Engineering concepts 
 
 ---
 
-**CampusLoop — Connecting students, circulating resources, and simplifying campus exchanges.**
+**CampusLoop — Connecting students, circulating resources, and simplifying campus exchanges.** ♻️
