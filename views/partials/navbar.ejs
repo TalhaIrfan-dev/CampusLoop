@@ -11,20 +11,32 @@
 
             <a class="<%= activePage === 'marketplace' ? 'active' : '' %>" href="/marketplace">Marketplace</a>
 
-            <a class="<%= activePage === 'dashboard' ? 'active' : '' %>" href="/dashboard">Dashboard</a>
+            <% if (isLoggedIn) { %>
+                <a class="<%= activePage === 'dashboard' ? 'active' : '' %>" href="/dashboard">Dashboard</a>
+            <% } %>
         </nav>
 
         <div class="nav-actions">
 
-            <% if (showLogin !== false) { %>
-                <a class="btn btn-quiet" href="/login">Log in</a>
+            <% if (!isLoggedIn) { %>
+
+                <% if (showLogin !== false) { %>
+                    <a class="btn btn-quiet" href="/login">Log in</a>
+                <% } %>
+
+                <% if (showSignup) { %>
+                    <a class="btn btn-primary" href="/signup">Join CampusLoop</a>
+                <% } %>
+
+            <% } else { %>
+
+                <form action="/auth/logout" method="POST">
+                    <button class="btn btn-quiet" type="submit">Log out</button>
+                </form>
+
             <% } %>
 
-            <% if (showSignup) { %>
-                <a class="btn btn-primary" href="/signup">Join CampusLoop</a>
-            <% } %>
-
-            <% if (showCreateListing) { %>
+            <% if (isLoggedIn && showCreateListing) { %>
                 <a class="btn btn-primary" href="/add-listing">+ List an item</a>
             <% } %>
 

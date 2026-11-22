@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
 </head>
 
 <body>
+
     <%- include('../partials/navbar', {
         activePage: '',
         showLogin: true,
@@ -30,7 +32,12 @@
             </div>
         </div>
 
-        <form class="listing-form" action="/add-listing" method="POST" enctype="multipart/form-data">
+        <form
+            class="listing-form"
+            action="/add-listing"
+            method="POST"
+            enctype="multipart/form-data"
+        >
 
             <!-- Item Details -->
             <div class="form-section">
@@ -42,44 +49,53 @@
                         id="item-title"
                         name="itemTitle"
                         type="text"
+                        maxlength="150"
                         placeholder="e.g. Programming Fundamentals textbook"
                         required
                     >
                 </div>
 
                 <div class="form-row">
+
                     <div class="form-group">
                         <label for="item-category">Category</label>
+
                         <select id="item-category" name="category" required>
                             <option value="">Choose category</option>
-                            <option>Books</option>
-                            <option>Electronics</option>
-                            <option>Study supplies</option>
-                            <option>Hostel & home</option>
-                            <option>Other</option>
+                            <option value="Books">Books</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Study supplies">Study supplies</option>
+                            <option value="Hostel & home">Hostel & home</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="item-condition">Condition</label>
+
                         <select id="item-condition" name="condition" required>
                             <option value="">Choose condition</option>
-                            <option>Like new</option>
-                            <option>Good</option>
-                            <option>Usable</option>
+                            <option value="Like new">Like new</option>
+                            <option value="Good">Good</option>
+                            <option value="Usable">Usable</option>
                         </select>
                     </div>
+
                 </div>
 
                 <div class="form-group">
                     <label for="item-description">Description</label>
+
                     <textarea
                         id="item-description"
                         name="description"
                         rows="4"
+                        maxlength="2000"
                         placeholder="Describe the item's condition and any useful details..."
+                        required
                     ></textarea>
                 </div>
+
             </div>
 
             <!-- Listing Type and Price -->
@@ -88,9 +104,10 @@
 
                 <div class="form-group">
                     <label for="listing-type">What would you like to do?</label>
+
                     <select id="listing-type" name="listingType" required>
                         <option value="">Select listing type</option>
-                        <option value="sale">Sell</option>
+                        <option value="sell">Sell</option>
                         <option value="exchange">Exchange</option>
                         <option value="donate">Donate</option>
                     </select>
@@ -98,14 +115,17 @@
 
                 <div class="form-group">
                     <label for="item-price">Price (PKR)</label>
+
                     <input
                         id="item-price"
                         name="price"
                         type="number"
                         min="0"
+                        step="0.01"
                         placeholder="Enter amount (use 0 for free)"
                     >
                 </div>
+
             </div>
 
             <!-- Item and Delivery Information -->
@@ -117,8 +137,10 @@
                 </p>
 
                 <div class="form-row">
+
                     <div class="form-group">
                         <label for="item-weight">Approx. weight (kg)</label>
+
                         <input
                             id="item-weight"
                             name="weightKg"
@@ -130,38 +152,28 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="item-distance">Delivery distance (km)</label>
-                        <input
-                            id="item-distance"
-                            name="distanceKm"
-                            type="number"
-                            min="0"
-                            step="0.1"
-                            placeholder="e.g. 2"
-                        >
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
                         <label for="item-size">Size</label>
+
                         <select id="item-size" name="itemSize">
                             <option value="">Select size</option>
-                            <option>Small</option>
-                            <option>Medium</option>
-                            <option>Large</option>
-                            <option>Extra large</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="Extra large">Extra large</option>
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="item-fragile">Fragile item?</label>
-                        <select id="item-fragile" name="isFragile">
-                            <option value="no">No</option>
-                            <option value="yes">Yes</option>
-                        </select>
-                    </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="item-fragile">Fragile item?</label>
+
+                    <select id="item-fragile" name="isFragile">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                    </select>
+                </div>
+
             </div>
 
             <!-- Item Photo -->
@@ -169,28 +181,41 @@
                 <h2>Item photo</h2>
 
                 <label class="upload-area" for="item-image">
+
                     <span class="upload-icon">↑</span>
+
                     <strong>Choose an image</strong>
-                    <small>Image upload preview will be added in a later step.</small>
+
+                    <small>Upload a photo of your item.</small>
 
                     <input
                         id="item-image"
                         name="itemImage"
                         type="file"
-                        accept="image/*"
+                        accept="image/jpeg,image/png,image/webp"
                     >
+
                 </label>
             </div>
 
             <!-- Form Actions -->
             <div class="form-actions">
-                <a class="btn btn-outline" href="/marketplace">Cancel</a>
-                <button class="btn btn-primary" type="submit">Publish listing</button>
+
+                <a class="btn btn-outline" href="/marketplace">
+                    Cancel
+                </a>
+
+                <button class="btn btn-primary" type="submit">
+                    Publish listing
+                </button>
+
             </div>
 
         </form>
+
     </main>
 
     <%- include('../partials/footer', { showTagline: false }) %>
+
 </body>
 </html>
