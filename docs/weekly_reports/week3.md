@@ -43,6 +43,7 @@
     requests where appropriate.
 -   Display the current status of each offer/request to the involved
     students.
+-   Include independent item requests and responses to those requests.
 
 ## 4. Transaction Management
 
@@ -74,6 +75,7 @@
     requirements.
 -   Test the recommendation rules using different item and delivery
     scenarios.
+-   Include Personal Pickup, Bike/Rider, Van, Truck, and simulated Drone as delivery options.
 
 ## 6. Delivery Management
 
@@ -90,6 +92,8 @@
 -   Keep delivery management simulated within the CampusLoop
     application; external delivery service integration is not part of
     this planned work unless the project scope is revised.
+-   Include simulated delivery-user assignment and delivery status updates (Requested, Assigned, Picked Up, In        
+    Transit, Delivered).
 
 ## 7. Dashboard and Student Activity
 
@@ -100,6 +104,7 @@
 -   Show delivery information and status where applicable.
 -   Ensure that dashboard information is limited to the currently
     logged-in student.
+-   Include circular-economy statistics.
 
 ## 8. Notifications and Additional Features
 
@@ -145,6 +150,23 @@
     development notes.
 -   Review the project structure and remove only genuinely unnecessary
     files or dependencies.
+
+## 11. Item Request Management
+- Allow students to post requests for items they need.
+- Display available item requests to other students.
+- Allow students to respond to relevant requests through available listings.
+## 12. User Roles and Access Management
+- Define Student, Admin, and Delivery User roles.
+- Implement appropriate access permissions for each role.
+- Restrict administrative and delivery-related functionality to authorized users.
+## 13. Circular Economy Statistics
+- Display statistics for sold, exchanged, donated, and reused items.
+- Integrate relevant activity statistics into the dashboard.
+- Retrieve statistics dynamically from the database.
+## 14. Responsive Design and Interface Testing
+- Test the application on desktop, tablet, and mobile screens.
+- Identify and fix layout and usability issues.
+- Verify consistency across different screen sizes.
 
 ------------------------------------------------------------------------
 
