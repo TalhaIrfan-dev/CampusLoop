@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,6 @@
     <title>Marketplace | CampusLoop</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
     <%- include('../partials/navbar', {
         activePage: 'marketplace',
@@ -23,287 +21,164 @@
                 <h1>Find your next <span>good thing.</span></h1>
                 <p>Useful finds, shared by students in your campus community.</p>
             </div>
-
-            <a class="btn btn-primary" href="/add-listing">+ Create listing</a>
+            <div class="market-heading-actions">
+                <% if (isLoggedIn) { %>
+                    <a class="btn btn-outline" href="/my-listings">My listings</a>
+                <% } %>
+                <a class="btn btn-primary" href="/add-listing">+ Create listing</a>
+            </div>
         </div>
 
-        <!-- Search Panel -->
-        <form class="search-panel" action="/marketplace" method="get">
-            <label class="search-field">
-                <span>⌕</span>
-                <input
-                    type="search"
-                    name="search"
-                    placeholder="Search books, calculators, hostel items..."
-                >
-            </label>
+        <% if (listingCreated) { %>
+            <p class="market-notice">Your listing has been published successfully.</p>
+        <% } %>
 
-            <label class="select-field">
-                <span class="sr-only">Category</span>
-                <select name="category">
-                    <option value="">All categories</option>
-                    <option>Books</option>
-                    <option>Electronics</option>
-                    <option>Study supplies</option>
-                    <option>Hostel & home</option>
-                </select>
-            </label>
+        <form class="marketplace-form" action="/marketplace" method="GET">
+            <div class="search-panel">
+                <label class="search-field">
+                    <span aria-hidden="true">⌕</span>
+                    <input type="search" name="search"
+                           value="<%= filters.search %>"
+                           placeholder="Search books, calculators, hostel items..."
+                           aria-label="Search listings">
+                </label>
 
-            <button class="btn btn-primary" type="submit">Search</button>
+                <label class="select-field">
+                    <span class="sr-only">Category</span>
+                    <select name="category">
+                        <option value="">All categories</option>
+                        <% ['Books', 'Electronics', 'Study supplies', 'Hostel & home', 'Other'].forEach(category => { %>
+                            <option value="<%= category %>" <%= filters.category === category ? 'selected' : '' %>>
+                                <%= category %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </label>
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+
+            <div class="market-layout">
+                <aside class="filter-panel">
+                    <div class="filter-title">
+                        <h2>Filters</h2>
+                        <a href="/marketplace">Reset</a>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Listing type</h3>
+                        <label>
+                            <input type="radio" name="listingType" value=""
+                                   <%= !filters.listingType ? 'checked' : '' %>>
+                            All types
+                        </label>
+                        <label>
+                            <input type="radio" name="listingType" value="sell"
+                                   <%= filters.listingType === 'sell' ? 'checked' : '' %>>
+                            For sale
+                        </label>
+                        <label>
+                            <input type="radio" name="listingType" value="exchange"
+                                   <%= filters.listingType === 'exchange' ? 'checked' : '' %>>
+                            Exchange
+                        </label>
+                        <label>
+                            <input type="radio" name="listingType" value="donate"
+                                   <%= filters.listingType === 'donate' ? 'checked' : '' %>>
+                            Free / donation
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Condition</h3>
+                        <label>
+                            <input type="radio" name="condition" value=""
+                                   <%= !filters.condition ? 'checked' : '' %>>
+                            Any condition
+                        </label>
+                        <% ['Like new', 'Good', 'Usable'].forEach(condition => { %>
+                            <label>
+                                <input type="radio" name="condition" value="<%= condition %>"
+                                       <%= filters.condition === condition ? 'checked' : '' %>>
+                                <%= condition %>
+                            </label>
+                        <% }) %>
+                    </div>
+
+                    <button class="btn btn-primary btn-full filter-apply" type="submit">Apply filters</button>
+                </aside>
+
+                <section class="listing-area">
+                    <div class="listing-toolbar">
+                        <p>
+                            <strong>Campus listings</strong>
+                            <span>· <%= resultCount %> <%= resultCount === 1 ? 'item' : 'items' %></span>
+                        </p>
+                        <label>
+                            Sort by
+                            <select name="sort" onchange="this.form.submit()">
+                                <option value="newest" <%= filters.sort === 'newest' ? 'selected' : '' %>>Recently added</option>
+                                <option value="price_asc" <%= filters.sort === 'price_asc' ? 'selected' : '' %>>Price: low to high</option>
+                                <option value="price_desc" <%= filters.sort === 'price_desc' ? 'selected' : '' %>>Price: high to low</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <% if (listings.length > 0) { %>
+                        <div class="product-grid">
+                            <% listings.forEach(listing => { %>
+                                <article class="product-card">
+                                    <a href="/product-detail/<%= listing.listing_id %>"
+                                       class="product-image dynamic-product-image"
+                                       aria-label="View <%= listing.title %>">
+                                        <% if (listing.listing_type === 'exchange') { %>
+                                            <span class="product-badge badge-exchange">Exchange</span>
+                                        <% } else if (listing.listing_type === 'donate') { %>
+                                            <span class="product-badge badge-free">Free</span>
+                                        <% } else { %>
+                                            <span class="product-badge">For sale</span>
+                                        <% } %>
+
+                                        <% if (listing.image_path) { %>
+                                            <img src="<%= listing.image_path %>" alt="<%= listing.title %>">
+                                        <% } else { %>
+                                            <span class="listing-image-placeholder" aria-hidden="true">♧</span>
+                                        <% } %>
+                                    </a>
+
+                                    <div class="product-info">
+                                        <span class="product-category"><%= listing.category %></span>
+                                        <h3><a href="/product-detail/<%= listing.listing_id %>"><%= listing.title %></a></h3>
+                                        <div class="product-bottom">
+                                            <strong>
+                                                <% if (listing.listing_type === 'sell') { %>
+                                                    Rs. <%= Number(listing.price).toLocaleString('en-PK', { maximumFractionDigits: 2 }) %>
+                                                <% } else if (listing.listing_type === 'exchange') { %>
+                                                    Exchange
+                                                <% } else { %>
+                                                    Free
+                                                <% } %>
+                                            </strong>
+                                            <span><%= listing.condition %></span>
+                                        </div>
+                                        <p class="seller-line">
+                                            Listed by <%= listing.seller_name %> ·
+                                            <%= new Date(listing.created_at).toLocaleDateString('en-PK', { day: 'numeric', month: 'short' }) %>
+                                        </p>
+                                    </div>
+                                </article>
+                            <% }) %>
+                        </div>
+                    <% } else { %>
+                        <div class="market-empty-state">
+                            <div aria-hidden="true">⌕</div>
+                            <h2>No listings found</h2>
+                            <p>Try changing your search or filters. New items may be added by students soon.</p>
+                            <a class="btn btn-outline" href="/marketplace">Clear all filters</a>
+                        </div>
+                    <% } %>
+                </section>
+            </div>
         </form>
-
-        <div class="market-layout">
-
-            <!-- Filters -->
-            <aside class="filter-panel">
-                <div class="filter-title">
-                    <h2>Filters</h2>
-                    <a href="/marketplace">Reset</a>
-                </div>
-
-                <div class="filter-group">
-                    <h3>Category</h3>
-
-                    <label>
-                        <input type="checkbox" name="filter-category" value="books">
-                        Books <span>12</span>
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="filter-category" value="electronics">
-                        Electronics <span>8</span>
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="filter-category" value="study">
-                        Study supplies <span>15</span>
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="filter-category" value="hostel">
-                        Hostel & home <span>6</span>
-                    </label>
-                </div>
-
-                <div class="filter-group">
-                    <h3>Listing type</h3>
-
-                    <label>
-                        <input type="checkbox" name="listing-type" value="sale">
-                        For sale
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="listing-type" value="exchange">
-                        Exchange
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="listing-type" value="donation">
-                        Free / donation
-                    </label>
-                </div>
-
-                <div class="filter-group">
-                    <h3>Condition</h3>
-
-                    <label>
-                        <input type="checkbox" name="condition" value="new">
-                        Like new
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="condition" value="good">
-                        Good
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="condition" value="used">
-                        Usable
-                    </label>
-                </div>
-            </aside>
-
-            <!-- Listings -->
-            <section class="listing-area">
-                <div class="listing-toolbar">
-                    <p>
-                        <strong>Featured listings</strong>
-                        <span>· 6 items</span>
-                    </p>
-
-                    <label>
-                        Sort by
-                        <select name="sort">
-                            <option>Recently added</option>
-                            <option>Price: low to high</option>
-                            <option>Price: high to low</option>
-                        </select>
-                    </label>
-                </div>
-
-                <div class="product-grid">
-
-                    <!-- Product 1 -->
-                    <article class="product-card">
-                        <a href="/product-detail" class="product-image product-books">
-                            <span class="product-badge">For sale</span>
-                            <div class="illustration-books">
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                            </div>
-                            <span class="save-mark">♡</span>
-                        </a>
-
-                        <div class="product-info">
-                            <span class="product-category">Books</span>
-                            <h3>
-                                <a href="/product-detail">Programming Fundamentals</a>
-                            </h3>
-
-                            <div class="product-bottom">
-                                <strong>Rs. 1,200</strong>
-                                <span>Good condition</span>
-                            </div>
-
-                            <p class="seller-line">Listed by Ali · 2 hours ago</p>
-                        </div>
-                    </article>
-
-                    <!-- Product 2 -->
-                    <article class="product-card">
-                        <a href="/product-detail" class="product-image product-calc">
-                            <span class="product-badge badge-exchange">Exchange</span>
-                            <div class="calculator-art">
-                                <span></span>
-                                <b>123</b>
-                                <i></i>
-                            </div>
-                            <span class="save-mark">♡</span>
-                        </a>
-
-                        <div class="product-info">
-                            <span class="product-category">Electronics</span>
-                            <h3>
-                                <a href="/product-detail">Scientific Calculator</a>
-                            </h3>
-
-                            <div class="product-bottom">
-                                <strong>Exchange</strong>
-                                <span>Like new</span>
-                            </div>
-
-                            <p class="seller-line">Listed by Sara · Yesterday</p>
-                        </div>
-                    </article>
-
-                    <!-- Product 3 -->
-                    <article class="product-card">
-                        <a href="/product-detail" class="product-image product-lamp">
-                            <span class="product-badge badge-free">Free</span>
-                            <div class="lamp-art">
-                                <i></i>
-                                <b></b>
-                                <span></span>
-                            </div>
-                            <span class="save-mark">♡</span>
-                        </a>
-
-                        <div class="product-info">
-                            <span class="product-category">Hostel & home</span>
-                            <h3>
-                                <a href="/product-detail">Study Desk Lamp</a>
-                            </h3>
-
-                            <div class="product-bottom">
-                                <strong>Free</strong>
-                                <span>Good condition</span>
-                            </div>
-
-                            <p class="seller-line">Listed by Hamza · 1 day ago</p>
-                        </div>
-                    </article>
-
-                    <!-- Product 4 -->
-                    <article class="product-card">
-                        <a href="/product-detail" class="product-image product-notes">
-                            <span class="product-badge">For sale</span>
-                            <div class="notes-art">
-                                <span>NOTES</span>
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                            </div>
-                            <span class="save-mark">♡</span>
-                        </a>
-
-                        <div class="product-info">
-                            <span class="product-category">Study supplies</span>
-                            <h3>
-                                <a href="/product-detail">Semester Notes Bundle</a>
-                            </h3>
-
-                            <div class="product-bottom">
-                                <strong>Rs. 350</strong>
-                                <span>Good condition</span>
-                            </div>
-
-                            <p class="seller-line">Listed by Ayesha · 2 days ago</p>
-                        </div>
-                    </article>
-
-                    <!-- Product 5 -->
-                    <article class="product-card">
-                        <a href="/product-detail" class="product-image product-bag">
-                            <span class="product-badge">For sale</span>
-                            <div class="bag-art">▱</div>
-                            <span class="save-mark">♡</span>
-                        </a>
-
-                        <div class="product-info">
-                            <span class="product-category">Hostel & home</span>
-                            <h3>
-                                <a href="/product-detail">Everyday Backpack</a>
-                            </h3>
-
-                            <div class="product-bottom">
-                                <strong>Rs. 900</strong>
-                                <span>Usable</span>
-                            </div>
-
-                            <p class="seller-line">Listed by Usman · 3 days ago</p>
-                        </div>
-                    </article>
-
-                    <!-- Product 6 -->
-                    <article class="product-card">
-                        <a href="/product-detail" class="product-image product-mouse">
-                            <span class="product-badge badge-exchange">Exchange</span>
-                            <div class="mouse-art">
-                                <i></i>
-                            </div>
-                            <span class="save-mark">♡</span>
-                        </a>
-
-                        <div class="product-info">
-                            <span class="product-category">Electronics</span>
-                            <h3>
-                                <a href="/product-detail">Wireless Mouse</a>
-                            </h3>
-
-                            <div class="product-bottom">
-                                <strong>Exchange</strong>
-                                <span>Like new</span>
-                            </div>
-
-                            <p class="seller-line">Listed by Zain · 4 days ago</p>
-                        </div>
-                    </article>
-
-                </div>
-            </section>
-        </div>
     </main>
 
     <%- include('../partials/footer', { showTagline: true }) %>
