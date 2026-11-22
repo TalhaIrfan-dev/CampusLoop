@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= listing.title %> | CampusLoop</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('../partials/navbar', {
+        activePage: 'marketplace',
+        showLogin: true,
+        showSignup: false,
+        showCreateListing: true
+    }) %>
+
+    <main class="container page-main">
+        <div class="breadcrumb">
+            <a href="/marketplace">Marketplace</a> / <%= listing.category %> / <%= listing.title %>
+        </div>
+
+        <div class="detail-layout">
+            <div class="detail-image dynamic-detail-image">
+                <% if (listing.image_path) { %>
+                    <img src="<%= listing.image_path %>" alt="<%= listing.title %>">
+                <% } else { %>
+                    <span class="listing-image-placeholder" aria-hidden="true">♧</span>
+                <% } %>
+            </div>
+
+            <section class="detail-info">
+                <span class="product-category">
+                    <%= listing.category %> ·
+                    <%= listing.listing_type === 'sell' ? 'FOR SALE' : listing.listing_type === 'exchange' ? 'EXCHANGE' : 'DONATION' %>
+                </span>
+                <h1><%= listing.title %></h1>
+
+                <div class="detail-price">
+                    <% if (listing.listing_type === 'sell') { %>
+                        Rs. <%= Number(listing.price).toLocaleString('en-PK', { maximumFractionDigits: 2 }) %>
+                    <% } else if (listing.listing_type === 'exchange') { %>
+                        Exchange
+                    <% } else { %>
+                        Free
+                    <% } %>
+                </div>
+
+                <div class="detail-tags">
+                    <span><%= listing.condition %> condition</span>
+                    <span><%= listing.status === 'active' ? 'Available' : listing.status %></span>
+                    <% if (listing.is_fragile) { %><span>Fragile item</span><% } %>
+                </div>
+
+                <p class="detail-description"><%= listing.description %></p>
+
+                <div class="listing-specifications">
+                    <% if (listing.weight_kg !== null) { %>
+                        <p><strong>Weight:</strong> <%= listing.weight_kg %> kg</p>
+                    <% } %>
+                    <% if (listing.item_size) { %>
+                        <p><strong>Size:</strong> <%= listing.item_size %></p>
+                    <% } %>
+                    <p><strong>Listed:</strong> <%= new Date(listing.created_at).toLocaleDateString('en-PK', { day: 'numeric', month: 'long', year: 'numeric' }) %></p>
+                </div>
+
+                <div class="detail-divider"></div>
+                <h3>Seller information</h3>
+                <div class="seller-profile">
+                    <div class="avatar"><%= listing.seller_name.charAt(0).toUpperCase() %></div>
+                    <div>
+                        <strong><%= listing.seller_name %></strong>
+                        <small><%= listing.seller_department %> · Student</small>
+                    </div>
+                    <span class="seller-verified">Student</span>
+                </div>
+
+                <div class="detail-actions">
+                    <% if (isLoggedIn && Number(currentUser.userId) === Number(listing.user_id)) { %>
+                        <a class="btn btn-primary btn-large" href="/my-listings/<%= listing.listing_id %>/edit">Edit your listing</a>
+                        <a class="btn btn-outline btn-large" href="/my-listings">My listings</a>
+                    <% } else { %>
+                        <a class="btn btn-primary btn-large" href="mailto:<%= listing.seller_email %>?subject=<%= encodeURIComponent('CampusLoop listing: ' + listing.title) %>">Contact seller</a>
+                    <% } %>
+                </div>
+                <p class="small-muted">Contact the seller using their university email to discuss this item.</p>
+            </section>
+        </div>
+    </main>
+
+    <%- include('../partials/footer', { showTagline: false }) %>
+</body>
+</html>

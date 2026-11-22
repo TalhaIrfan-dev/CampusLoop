@@ -1,0 +1,46 @@
+
+<header class="site-header">
+    <div class="container nav-wrap">
+
+        <a class="brand" href="/" aria-label="CampusLoop home">
+            <img src="/assets/icons/campusloop-logo.png" alt="CampusLoop logo">
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+            <a class="<%= activePage === 'home' ? 'active' : '' %>" href="/">Home</a>
+
+            <a class="<%= activePage === 'marketplace' ? 'active' : '' %>" href="/marketplace">Marketplace</a>
+
+            <% if (isLoggedIn) { %>
+                <a class="<%= activePage === 'dashboard' ? 'active' : '' %>" href="/dashboard">Dashboard</a>
+            <% } %>
+        </nav>
+
+        <div class="nav-actions">
+
+            <% if (!isLoggedIn) { %>
+
+                <% if (showLogin !== false) { %>
+                    <a class="btn btn-quiet" href="/login">Log in</a>
+                <% } %>
+
+                <% if (showSignup) { %>
+                    <a class="btn btn-primary" href="/signup">Join CampusLoop</a>
+                <% } %>
+
+            <% } else { %>
+
+                <form action="/auth/logout" method="POST">
+                    <button class="btn btn-quiet" type="submit">Log out</button>
+                </form>
+
+            <% } %>
+
+            <% if (isLoggedIn && showCreateListing) { %>
+                <a class="btn btn-primary" href="/add-listing">+ List an item</a>
+            <% } %>
+
+        </div>
+
+    </div>
+</header>

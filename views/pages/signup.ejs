@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create account | CampusLoop</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="auth-body">
+
+    <%- include('../partials/auth-header') %>
+
+    <main class="auth-layout container">
+
+        <section class="auth-intro">
+            <span class="eyebrow">Join the community</span>
+
+            <h1>
+                Make room for<br>
+                <span>another loop.</span>
+            </h1>
+
+            <p>
+                Create your student profile and start finding, sharing, and passing on useful campus items.
+            </p>
+
+            <div class="auth-decoration">✦</div>
+        </section>
+
+        <section class="auth-card">
+            <h2>Create your account</h2>
+
+            <p class="form-subtitle">
+                A few details to get your campus profile started.
+            </p>
+
+            <form action="/auth/register" method="POST">
+
+                <div class="form-group">
+                    <label for="signup-name">Full name</label>
+                    <input
+                        id="signup-name"
+                        name="fullName"
+                        type="text"
+                        placeholder="Your full name"
+                        autocomplete="name"
+                        maxlength="100"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-email">University email</label>
+                    <input
+                        id="signup-email"
+                        name="email"
+                        type="email"
+                        placeholder="name@university.edu"
+                        autocomplete="email"
+                        maxlength="255"
+                        required
+                    >
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="student-id">Student ID</label>
+                        <input
+                            id="student-id"
+                            name="studentId"
+                            type="text"
+                            placeholder="e.g. 23-CS-001"
+                            maxlength="50"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <select id="department" name="department" required>
+                            <option value="">Select</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Electrical Engineering">Electrical Engineering</option>
+                            <option value="Business Administration">Business Administration</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input
+                        id="signup-password"
+                        name="password"
+                        type="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                    >
+                </div>
+
+                <label class="check-label terms-check">
+                    <input
+                        type="checkbox"
+                        name="terms"
+                        value="accepted"
+                        required
+                    >
+                    I agree to the campus marketplace guidelines.
+                </label>
+
+                <button class="btn btn-primary btn-full" type="submit">
+                    Create account
+                </button>
+
+            </form>
+
+            <p class="auth-switch">
+                Already have an account? <a href="/login">Log in</a>
+            </p>
+        </section>
+
+    </main>
+
+</body>
+</html>
