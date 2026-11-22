@@ -27,10 +27,10 @@ CampusLoop/
 ├── package.json
 ├── package-lock.json
 │
-├── config/
-│   └── db.js
 │
 ├── src/
+│   ├── config/
+│   │   └── db.js
 │   ├── server.js
 │   ├── signup.js
 │   └── login.js
