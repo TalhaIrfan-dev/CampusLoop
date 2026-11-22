@@ -1,22 +1,39 @@
+
+// Load environment variables
+require("dotenv").config();
+
 const express = require("express");
+const signupRouter = require("./signup");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
+// ==============================
+// Middleware Configuration
+// ==============================
+
+// Parse HTML form data
+app.use(express.urlencoded({ extended: true }));
+
+// Serve static files from public folder
+app.use(express.static("public"));
 
 // Configure EJS
 app.set("view engine", "ejs");
 
-// Serve static files from the public folder
-app.use(express.static("public"));
+// ==============================
+// Authentication Routes
+// ==============================
 
-// Home route
+app.use("/auth/register", signupRouter);
+
+// ==============================
+// Page Routes
+// ==============================
+
+// Home page
 app.get("/", (req, res) => {
     res.render("pages/home");
-});
-
-// Start server
-app.listen(PORT, () => {
-    console.log(`CampusLoop server running at http://localhost:${PORT}`);
 });
 
 // Login page
@@ -47,4 +64,12 @@ app.get("/add-listing", (req, res) => {
 // Dashboard page
 app.get("/dashboard", (req, res) => {
     res.render("pages/dashboard");
+});
+
+// ==============================
+// Start Server
+// ==============================
+
+app.listen(PORT, () => {
+    console.log(`CampusLoop server running at http://localhost:${PORT}`);
 });

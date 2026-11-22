@@ -9,23 +9,12 @@
 </head>
 
 <body>
-    <header class="site-header">
-        <div class="container nav-wrap">
-            <a class="brand" href="/">
-                <img src="/assets/icons/campusloop-logo.png" alt="CampusLoop logo">
-            </a>
-
-            <nav class="main-nav" aria-label="Main navigation">
-                <a href="/">Home</a>
-                <a href="/marketplace">Marketplace</a>
-                <a href="/dashboard">Dashboard</a>
-            </nav>
-
-            <div class="nav-actions">
-                <a class="btn btn-quiet" href="/login">Log in</a>
-            </div>
-        </div>
-    </header>
+    <%- include('../partials/navbar', {
+        activePage: '',
+        showLogin: true,
+        showSignup: false,
+        showCreateListing: false
+    }) %>
 
     <main class="container page-main narrow-main">
 
@@ -202,14 +191,6 @@
         </form>
     </main>
 
-    <footer class="site-footer">
-        <div class="container footer-wrap">
-            <a class="footer-brand" href="/">
-                Campus<span>Loop</span>
-            </a>
-
-            <small>© 2026 CampusLoop — Connecting Students, Simplifying Campus Life.</small>
-        </div>
-    </footer>
+    <%- include('../partials/footer', { showTagline: false }) %>
 </body>
 </html>
